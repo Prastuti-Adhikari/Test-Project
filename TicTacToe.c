@@ -13,6 +13,7 @@ void PlayerMove();
 void ComputerMove();
 char CheckWinner();
 void PrintWinner(char);
+char abc;
 
 int main(){
 char winner=' ';
