@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<ctype.h>
 
 char board[3][3];
 const char Player='X';
@@ -13,26 +14,45 @@ void PlayerMove();
 void ComputerMove();
 char CheckWinner();
 void PrintWinner(char);
-char abc;
 
-int main(){
-char winner=' ';
-NewBoard();
-while(winner==' ' && CheckFreeSpace()!=0){
-PrintBoard();
-PlayerMove();
-winner=CheckWinner();
-if(winner!=' ' || CheckFreeSpace()==0){
-    break;
-}
-ComputerMove();
-winner=CheckWinner();
-if(winner!=' ' || CheckFreeSpace()==0){
-    break;
-}
-}
-PrintBoard();
-PrintWinner(winner);
+int main()
+{
+    char winner = ' ';
+    char response = ' ';
+ do
+   {
+      winner = ' ';
+      response = ' ';
+      NewBoard();
+
+      while(winner == ' ' && CheckFreeSpace() != 0)
+      {
+         PrintBoard();
+
+         PlayerMove();
+         winner = CheckWinner();
+         if(winner != ' ' || CheckFreeSpace() == 0)
+         {
+            break;
+         }
+
+         ComputerMove();
+         winner= CheckWinner();
+         if(winner != ' ' || CheckFreeSpace() == 0)
+         {
+            break;
+         }
+      }
+
+      PrintBoard();
+      PrintWinner(winner);
+
+      printf("\nWould you like to play again? (Y/N): ");
+      scanf(" %c", &response);
+      response = toupper(response);
+   } while (response == 'Y');
+printf("Thanks for playing Tic Tac Toe, hehe!");
+
 return 0;
 }
 
